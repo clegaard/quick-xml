@@ -442,7 +442,7 @@ impl<'de, 'a, R: BorrowingReader<'de>> de::Deserializer<'de> for &'a mut Deseria
 
     fn deserialize_option<V: de::Visitor<'de>>(self, visitor: V) -> Result<V::Value, DeError> {
         match self.peek()? {
-            Some(Event::Text(t)) if t.is_empty() => visitor.visit_none(),
+            // Some(Event::Text(t)) if t.is_empty() => visitor.visit_none(),
             None | Some(Event::Eof) => visitor.visit_none(),
             _ => visitor.visit_some(self),
         }
